@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { TodosStack } from '../lib/todos-stack';
+import { TodosStack } from '../stacks/todos-stack';
 
 const app = new cdk.App();
 new TodosStack(app, 'TodosStack', {
