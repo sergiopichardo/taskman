@@ -33,5 +33,6 @@ exports.handler = async function(
         console.log(error);
     }
 
+    console.log(event);
     return event;
 }
