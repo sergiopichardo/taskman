@@ -16,6 +16,7 @@ export class AppSyncStack extends cdk.Stack {
         super(scope, id, props);
 
         this.api = this.createAppSyncApi(props);
+        this.createOutputs(this.api);
     }
 
     createAppSyncApi(props: AppSyncStackProps) {
@@ -40,11 +41,13 @@ export class AppSyncStack extends cdk.Stack {
             },
         })
 
-        new cdk.CfnOutput(this, "GraphQLApiURL", { 
-            value: api.graphqlUrl 
-        });
-
         return api;
+    }
+
+    createOutputs(api: appSync.GraphqlApi) {
+        new cdk.CfnOutput(this, "GraphQLApiURL", {
+            value: api.graphqlUrl
+        });
     }
 } 
 
