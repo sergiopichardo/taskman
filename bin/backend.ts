@@ -10,7 +10,8 @@ const app = new cdk.App();
 const databaseStack = new DatabaseStack(app, "DatabaseStack");
 
 const computeStack = new ComputeStack(app, "ComputeStack", {
-  usersTable: databaseStack.usersTable
+  usersTable: databaseStack.usersTable,
+  todosTable: databaseStack.todosTable,
 });
 
 const authStack = new AuthStack(app, "AuthStack", {
@@ -18,5 +19,7 @@ const authStack = new AuthStack(app, "AuthStack", {
 });
 
 const appSyncStack = new AppSyncStack(app, "AppSyncStack", {
-  userPool: authStack.todoUserPool
+  userPool: authStack.todoUserPool,
+  createTodoFunc: computeStack.createTodoFunc
 })
+
