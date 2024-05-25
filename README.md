@@ -7,15 +7,6 @@ A task management application built with AWS Serverless services.
 Array(16).join('wat' - 1) + ' Taskmaaaan'
 ```
 
-## Another Task Management App? 
-> "They say that every time you build a todo app, a kitty dies."
-
-Well, I'm more of a dog person lol. Dogs don't sell out the way cats do, haha.
-
-In all seriousness, though, I'm working on a todo app because it's easy to understand. Everyone knows what a todo list looks like, and over time, I plan to add more functionalities. So, stay tuned!
-
-
-
 ## Services, Tools and Methodologies used
 - **AWS Lambda**: A serverless compute service that lets you run code without provisioning or managing servers. You pay only for the compute time you consume.
 - **Amazon API Gateway**: A fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale.
