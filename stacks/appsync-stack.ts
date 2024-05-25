@@ -4,9 +4,11 @@ import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import * as appSync from "aws-cdk-lib/aws-appsync";
 import { UserPool } from "aws-cdk-lib/aws-cognito";
+import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 
 interface AppSyncStackProps extends cdk.StackProps {
-    userPool: UserPool
+    userPool: UserPool;
+    createTodoFunc: NodejsFunction;
 }
 
 export class AppSyncStack extends cdk.Stack {
@@ -42,6 +44,19 @@ export class AppSyncStack extends cdk.Stack {
         })
 
         return api;
+    }
+
+    createTodoResolver(
+        scope: Construct, 
+        props: AppSyncStackProps, 
+        api: appSync.IGraphqlApi
+    ) {
+        const createTodoResolver = api
+            .addLambdaDataSource("CreateTodoDataSource", props.createTodoFunc)
+            .createResolver("CreateTodoMutation", {
+                typeName: "Mutation",
+                fieldName: "createTodo",
+            })
     }
 
     createOutputs(api: appSync.GraphqlApi) {
