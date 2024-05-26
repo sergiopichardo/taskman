@@ -57,7 +57,8 @@ export class AppSyncStack extends cdk.Stack {
             .createResolver("CreateTodoMutation", {
                 typeName: "Mutation",
                 fieldName: "createTodo",
-            })
+            });
+        
     }
 
     createOutputs(api: appSync.GraphqlApi) {

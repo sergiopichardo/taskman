@@ -2,47 +2,38 @@ import {
     DynamoDBClient,
     PutItemCommand,
     PutItemCommandInput,
-} from "@aws-sdk/client-dynamodb"
+} from "@aws-sdk/client-dynamodb";
 
-import { marshall } from "@aws-sdk/util-dynamodb"
 import { AppSyncResolverEvent } from "aws-lambda";
 import { ulid } from "ulid";
+import { marshall } from "@aws-sdk/util-dynamodb";
 
-const client = new DynamoDBClient({ region: "us-east-1" })
-
+const client = new DynamoDBClient({ region: "us-east-1" });
 const TABLE_NAME = "Todos";
 
 export const handler = async (event: AppSyncResolverEvent<any>) => {
     console.log(JSON.stringify(event, null, 2));
-    const { UserId, title } = event.arguments.input;
+    const { UserID, title } = event.arguments.input;
     const TodoID = ulid();
     const params: PutItemCommandInput = {
-        TableName: TABLE_NAME,
+        TableName: "Todos",
         Item: marshall({
-            UserId,
+            UserID,
             TodoID,
             title,
             completed: false,
-            __typename: "Todo"
         }),
-    }
-
+    };
     try {
         await client.send(new PutItemCommand(params));
-
         return {
-            UserId,
+            UserID,
             TodoID,
             title,
             completed: false,
-            __typename: "Todo"
-        }
-
-    } catch (error) {
+        };
+    } catch (error: any) {
         console.log(error);
         throw error;
     }
-
-
-
-}
+};

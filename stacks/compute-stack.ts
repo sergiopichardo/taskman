@@ -53,9 +53,9 @@ export class ComputeStack extends cdk.Stack {
 
         func.addToRolePolicy(new iam.PolicyStatement({
             actions: ["dynamodb:PutItem"],
-            resources: [props.usersTable.tableArn as string]
+            resources: [props.todosTable.tableArn as string]
         }))
 
-        return func
+        return func;
     }
 }
