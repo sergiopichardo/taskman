@@ -10,7 +10,8 @@
     "test": "jest",
     "cdk": "cdk",
     "deploy": "cdk synth && cdk deploy --all",
-    "e2e:signup": "jest --verbose ./__tests__/test_cases/e2e/confirm-user-sign-up.test.ts"
+    "e2e:signup": "jest --verbose ./__tests__/test_cases/e2e/confirm-user-sign-up.test.ts",
+    "e2e:graphql": "jest --verbose ./__tests__/test_cases/e2e/appsync-todo-operation.test.ts"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
